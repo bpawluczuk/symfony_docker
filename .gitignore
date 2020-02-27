@@ -1,2 +1,6 @@
 /.idea/
 /docker/data/
+/sc3/bin/
+/sc3/.env.test
+/sc3/phpunit.xml.dist
+/sc3/tests/bootstrap.php
