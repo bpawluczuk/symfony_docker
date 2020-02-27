@@ -8,29 +8,29 @@ use Doctrine\ORM\Mapping as ORM;
  * Trait StatusId
  * @package App\AbstractModule\Domain\Entity\EntityColumns
  */
-trait StatusId
+trait Status
 {
     /**
      * @var int
-     * @ORM\Column(name="status_id", type="smallint", options={"default" = 1})
+     * @ORM\Column(name="status", type="smallint", options={"default" = 1})
      */
-    private $status_id = 1;
+    private $status = 1;
 
     /**
      * @return int
      */
-    public function getStatusId(): int
+    public function getStatus(): int
     {
-        return $this->status_id;
+        return $this->status;
     }
 
     /**
-     * @param int $status_id
+     * @param int $status
      * @return $this
      */
-    public function setStatusId(int $status_id): self
+    public function setStatus(int $status): self
     {
-        $this->status_id = $status_id;
+        $this->status = $status;
         return $this;
     }
 }
