@@ -14,6 +14,10 @@ use App\LocalizationModule\Domain\Entity\Localization;
  */
 class LocalizationCommand extends AbstractAggregate
 {
+    /**
+     * Localization factory
+     * @param string $name
+     */
     public function create(string $name)
     {
         $object = new Localization();

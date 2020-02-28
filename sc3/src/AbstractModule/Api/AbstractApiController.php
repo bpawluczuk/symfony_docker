@@ -31,7 +31,7 @@ class AbstractApiController extends AbstractController
      * @param string $message
      * @return JsonResponse
      */
-    protected function getBadRequestErrorResponse(string $message): JsonResponse
+    protected function getBadRequestResponse(string $message = "Bad Request"): JsonResponse
     {
         $dataResponse = [
             'status' => 'error',
@@ -49,10 +49,8 @@ class AbstractApiController extends AbstractController
      * @param string $message
      * @return JsonResponse
      */
-    protected function getAccessDeniedErrorResponse(string $message): JsonResponse
+    protected function getAccessDeniedResponse(string $message = "Access Denied"): JsonResponse
     {
-        $message = 'Access Denied';
-
         $dataResponse = [
             'status' => 'error',
             'error_code' => 401,
@@ -69,7 +67,7 @@ class AbstractApiController extends AbstractController
      * @param string $message
      * @return JsonResponse
      */
-    protected function getForbiddenErrorResponse(string $message = 'Forbidden'): JsonResponse
+    protected function getForbiddenResponse(string $message = 'Forbidden'): JsonResponse
     {
         $dataResponse = [
             'status' => 'error',
@@ -87,7 +85,7 @@ class AbstractApiController extends AbstractController
      * @param string $message
      * @return JsonResponse
      */
-    protected function getNotFoundErrorResponse(string $message = 'Object not found'): JsonResponse
+    protected function getNotFoundResponse(string $message = 'Object not found'): JsonResponse
     {
         $dataResponse = [
             'status' => 'error',
