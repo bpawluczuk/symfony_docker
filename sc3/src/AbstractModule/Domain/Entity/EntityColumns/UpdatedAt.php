@@ -13,7 +13,7 @@ trait UpdatedAt
 {
     /**
      * @var DateTime
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="updated_at")
      * @Gedmo\Timestampable(on="update")
      */
     protected $updatedAt;

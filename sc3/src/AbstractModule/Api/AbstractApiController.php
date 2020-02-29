@@ -14,14 +14,18 @@ class AbstractApiController extends AbstractController
 {
     /**
      * @param array $data
+     * @param null $page_count
      * @return JsonResponse
      */
-    protected function getSuccessResponse(array $data): JsonResponse
+    protected function getSuccessResponse(array $data, $page_count = null): JsonResponse
     {
         $dataResponse['status'] = 'ok';
+        if ($page_count) {
+            $dataResponse['page_count'] = $page_count;
+        }
         $dataResponse['data'] = $data;
 
-        $response = new JsonResponse($dataResponse, 200);
+        $response = new JsonResponse($dataResponse);
         $response->headers->set('Cache-Control', 'private, no-cache');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;

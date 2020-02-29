@@ -6,14 +6,13 @@
 namespace App\LocalizationModule\Api;
 
 use App\AbstractModule\Api\AbstractApiController;
+use App\AbstractModule\Infrastructure\Util\Paginate;
+use App\LocalizationModule\Aggregate\LocalizationCommand;
 use App\LocalizationModule\Aggregate\LocalizationQuery;
 use App\LocalizationModule\Domain\Entity\Localization;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-
 
 /**
  * Class LocalizationController
@@ -38,12 +37,21 @@ class LocalizationController extends AbstractApiController
         foreach ($query->getList() as $item) {
             $result[] = [
                 "name" => $item->getName(),
-                "createAt" => $item->getCreatedAt()->getTimestamp(),
-                "updateAt" => $item->getUpdatedAt()->getTimestamp(),
+                "created_at" => $item->getCreatedAt()->getTimestamp(),
+                "updated_at" => $item->getUpdatedAt()->getTimestamp(),
             ];
         }
 
-        return $this->getSuccessResponse($result);
+        $paginate = new Paginate(
+            $result,
+            $request->query->get('page'),
+            $request->query->get('limit')
+        );
+
+        return $this->getSuccessResponse(
+            $paginate->getArrayResult(),
+            $paginate->getPageCount()
+        );
     }
 
     /**
@@ -53,11 +61,19 @@ class LocalizationController extends AbstractApiController
      */
     public function add(Request $request)
     {
-        $result = [];
+        $name = $request->get('name');
 
-        $response = new JsonResponse($result);
-        $response->headers->set('Cache-Control', 'private, no-cache');
-        $response->headers->set('Access-Control-Allow-Origin', '*');
-        return $response;
+        if (empty($name)) {
+            return $this->getBadRequestResponse("Field name is required");
+        }
+
+        try {
+            $command = new LocalizationCommand($this->container);
+            $command->create($name);
+        } catch (\Exception $e) {
+            return $this->getBadRequestResponse($e->getMessage());
+        }
+
+        return $this->getSuccessResponse([]);
     }
 }

@@ -109,6 +109,15 @@ abstract class AbstractAggregate
     }
 
     /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function getJsonData(Request $request)
+    {
+        return json_decode($request->getContent(), true);
+    }
+
+    /**
      * @param string $url
      * @param array $parameters
      * @param string $method

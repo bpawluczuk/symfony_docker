@@ -22,5 +22,8 @@ class LocalizationCommand extends AbstractAggregate
     {
         $object = new Localization();
         $object->setName($name);
+
+        $this->getManager()->persist($object);
+        $this->getManager()->flush();
     }
 }

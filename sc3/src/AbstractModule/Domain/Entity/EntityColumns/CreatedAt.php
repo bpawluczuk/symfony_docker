@@ -13,7 +13,7 @@ trait CreatedAt
 {
     /**
      * @var DateTime
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="created_at")
      * @Gedmo\Timestampable(on="create")
      */
     protected $createdAt;
