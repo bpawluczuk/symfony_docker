@@ -28,22 +28,10 @@ class LocalizationController extends AbstractApiController
      */
     public function getList(Request $request)
     {
-        $result = [];
         $query = new LocalizationQuery($this->container);
 
-        /**
-         * @var Localization $item
-         */
-        foreach ($query->getList() as $item) {
-            $result[] = [
-                "name" => $item->getName(),
-                "created_at" => $item->getCreatedAt()->getTimestamp(),
-                "updated_at" => $item->getUpdatedAt()->getTimestamp(),
-            ];
-        }
-
         $paginate = new Paginate(
-            $result,
+            $query->getList([]),
             $request->query->get('page'),
             $request->query->get('limit')
         );

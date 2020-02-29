@@ -16,10 +16,32 @@ use App\LocalizationModule\Domain\Repository\LocalizationRepository;
 class LocalizationQuery extends AbstractAggregate
 {
     /**
+     * @param array $filtr
      * @return object[]
      */
-    public function getList()
+    public function getListObj(array $filtr = [])
     {
         return $this->getRepository(Localization::class)->findAll();
+    }
+
+    /**
+     * @param array $filtr
+     * @return array
+     */
+    public function getList(array $filtr = [])
+    {
+        $result = [];
+
+        /**
+         * @var Localization $item
+         */
+        foreach ($this->getListObj($filtr) as $item) {
+            $result[] = [
+                "name" => $item->getName(),
+                "created_at" => $item->getCreatedAt()->getTimestamp(),
+                "updated_at" => $item->getUpdatedAt()->getTimestamp(),
+            ];
+        }
+        return $result;
     }
 }
