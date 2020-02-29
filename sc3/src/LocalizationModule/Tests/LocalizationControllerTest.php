@@ -2,10 +2,10 @@
 
 namespace App\LocalizationModule\Tests;
 
-use LocalizationControllerTest;
+use App\LocalizationModule\Api\LocalizationController;
 use PHPUnit\Framework\TestCase;
 
-class LocalizationTest extends TestCase
+class LocalizationControllerTest extends TestCase
 {
 
     public function testSomething()
