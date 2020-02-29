@@ -23,7 +23,7 @@ class LocalizationControllerTest extends WebTestCase
         $this->assertContains('status', $client->getResponse()->getContent());
         $this->assertContains('data', $client->getResponse()->getContent());
         $this->assertContains('name', $client->getResponse()->getContent());
-        $this->assertContains('createAt', $client->getResponse()->getContent());
-        $this->assertContains('updateAt', $client->getResponse()->getContent());
+        $this->assertContains('created_at', $client->getResponse()->getContent());
+        $this->assertContains('updated_at', $client->getResponse()->getContent());
     }
 }
