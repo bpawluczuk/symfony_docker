@@ -13,16 +13,27 @@ use App\LocalizationModule\Domain\Entity\Localization;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Nelmio\ApiDocBundle\Annotation\Security;
+use Swagger\Annotations as SWG;
 
 /**
  * Class LocalizationController
  * @package App\LocalizationModule\Api
- * @Route("/localization")
+ * @Route("/api/localization")
  */
 class LocalizationController extends AbstractApiController
 {
     /**
      * @Route("/list", methods={"GET"})
+     * @SWG\Response(
+     *     response=200,
+     *     description="Returns the Localizations",
+     *     @SWG\Schema(
+     *         type="array",
+     *         @SWG\Items(ref="#definitions/Reward")
+     *     )
+     * )
      * @param Request $request
      * @return JsonResponse
      */

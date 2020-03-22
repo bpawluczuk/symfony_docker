@@ -10,7 +10,7 @@ namespace App\AbstractModule\Infrastructure\Util;
 
 /**
  * Class Paginate
- * @package Ig\ApiBundle\Paginate
+ * @package App\AbstractModule\Infrastructure\Util
  * @author Borys Pawluczuk
  */
 class Paginate
