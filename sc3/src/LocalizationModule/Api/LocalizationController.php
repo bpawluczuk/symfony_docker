@@ -26,6 +26,7 @@ class LocalizationController extends AbstractApiController
 {
     /**
      * @Route("/list", methods={"GET"})
+     * @SWG\Tag(name="WebApi Localizations")
      * @SWG\Response(
      *     response=200,
      *     description="Returns the Localizations",
@@ -33,6 +34,18 @@ class LocalizationController extends AbstractApiController
      *         type="array",
      *         @SWG\Items(ref="#definitions/Reward")
      *     )
+     * )
+     * @SWG\Parameter(
+     *     name="page",
+     *     in="query",
+     *     type="number",
+     *     description="Strona"
+     * )
+     * @SWG\Parameter(
+     *     name="limit",
+     *     in="query",
+     *     type="number",
+     *     description="Limit"
      * )
      * @param Request $request
      * @return JsonResponse
@@ -55,20 +68,41 @@ class LocalizationController extends AbstractApiController
 
     /**
      * @Route("/add", methods={"POST"})
+     * @SWG\Tag(name="WebApi Localizations")
+     * @SWG\Response(
+     *     response=200,
+     *     description="Add the Localizations",
+     * )
+     * @SWG\Post(
+     *      consumes={"application/json"},
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="Localization",
+     *          in="body",
+     *          description="Obiekt lokalizacji podany w formacie json",
+     *          required=true,
+     *          type="json",
+     *          format="application/json",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(property="name", type="string", example="Auchan Bydgoszcz"),
+     *          )
+     *     )
+     * )
      * @param Request $request
      * @return JsonResponse
      */
     public function add(Request $request)
     {
-        $name = $request->get('name');
+        $data = json_decode($request->getContent(), true);
 
-        if (empty($name)) {
+        if (empty($data['name'])) {
             return $this->getBadRequestResponse("Field name is required");
         }
 
         try {
             $command = new LocalizationCommand($this->container);
-            $command->create($name);
+            $command->create($data['name']);
         } catch (\Exception $e) {
             return $this->getBadRequestResponse($e->getMessage());
         }
