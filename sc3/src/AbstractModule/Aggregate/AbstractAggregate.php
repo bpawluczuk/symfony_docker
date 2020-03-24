@@ -171,5 +171,4 @@ abstract class AbstractAggregate
         }
         return $data;
     }
-
 }

@@ -1,16 +1,16 @@
 <?php
 
-namespace App\LocalizationModule\Tests\Functional;
+namespace App\LocationModule\Tests\Functional;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
-class LocalizationControllerTest extends WebTestCase
+class LocationControllerTest extends WebTestCase
 {
     public function testGetList()
     {
         $client = static::createClient();
-        $client->request('GET', '/localization/list');
+        $client->request('GET', '/api/location/list');
         $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
         $this->assertTrue(

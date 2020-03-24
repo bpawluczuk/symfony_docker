@@ -2,6 +2,8 @@
 
 namespace App\AbstractModule\Domain\Entity\EntityColumns;
 
+use Symfony\Component\Validator\Constraints\NotBlank;
+
 /**
  * Trait Name
  * @package App\AbstractModule\Domain\Entity\EntityColumns
@@ -11,6 +13,7 @@ trait Name
     /**
      * @var string
      * @ORM\Column(name="name", type="string")
+     * @NotBlank(message="Please provide name")
      */
     private $name;
 
@@ -23,10 +26,10 @@ trait Name
     }
 
     /**
-     * @param $name
+     * @param string $name
      * @return $this
      */
-    public function setName($name) :self
+    public function setName(string $name) :self
     {
         $this->name = $name;
         return $this;

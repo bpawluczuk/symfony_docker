@@ -6,6 +6,6 @@ kernel:
     resource: ../../src/Kernel.php
     type: annotation
 
-localization.module.controllers:
-    resource: ../../src/LocalizationModule/Api
+Location.module.controllers:
+    resource: ../../src/LocationModule/Api
     type: annotation

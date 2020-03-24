@@ -16,9 +16,9 @@ doctrine:
 #                dir: '%kernel.project_dir%/src/Entity'
 #                prefix: 'App\Entity'
 #                alias: App
-            Localization:
+            Location:
                 is_bundle: false
                 type: annotation
-                dir: '%kernel.project_dir%/src/LocalizationModule/Domain/Entity'
-                prefix: 'App\LocalizationModule\Domain\Entity'
-                alias: Localization
+                dir: '%kernel.project_dir%/src/LocationModule/Domain/Entity'
+                prefix: 'App\LocationModule\Domain\Entity'
+                alias: Location

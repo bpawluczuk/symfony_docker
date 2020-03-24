@@ -3,33 +3,33 @@
  * Created by bpawluczuk on gru, 2019
  */
 
-namespace App\LocalizationModule\Api;
+namespace App\LocationModule\Api;
 
 use App\AbstractModule\Api\AbstractApiController;
 use App\AbstractModule\Infrastructure\Util\Paginate;
-use App\LocalizationModule\Aggregate\LocalizationCommand;
-use App\LocalizationModule\Aggregate\LocalizationQuery;
-use App\LocalizationModule\Domain\Entity\Localization;
+use App\LocationModule\Aggregate\LocationCommand;
+use App\LocationModule\Aggregate\LocationQuery;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Nelmio\ApiDocBundle\Annotation\Security;
 use Swagger\Annotations as SWG;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
- * Class LocalizationController
- * @package App\LocalizationModule\Api
- * @Route("/api/localization")
+ * Class LocationController
+ * @package App\LocationModule\Api
+ * @Route("/api/location")
  */
-class LocalizationController extends AbstractApiController
+class LocationController extends AbstractApiController
 {
     /**
      * @Route("/list", methods={"GET"})
-     * @SWG\Tag(name="WebApi Localizations")
+     * @SWG\Tag(name="WebApi Location")
      * @SWG\Response(
      *     response=200,
-     *     description="Returns the Localizations",
+     *     description="Returns the Locations",
      *     @SWG\Schema(
      *         type="array",
      *         @SWG\Items(ref="#definitions/Reward")
@@ -52,7 +52,7 @@ class LocalizationController extends AbstractApiController
      */
     public function getList(Request $request)
     {
-        $query = new LocalizationQuery($this->container);
+        $query = new LocationQuery($this->container);
 
         $paginate = new Paginate(
             $query->getList([]),
@@ -68,16 +68,16 @@ class LocalizationController extends AbstractApiController
 
     /**
      * @Route("/add", methods={"POST"})
-     * @SWG\Tag(name="WebApi Localizations")
+     * @SWG\Tag(name="WebApi Location")
      * @SWG\Response(
      *     response=200,
-     *     description="Add the Localizations",
+     *     description="Add the Locations",
      * )
      * @SWG\Post(
      *      consumes={"application/json"},
      *      produces={"application/json"},
      *      @SWG\Parameter(
-     *          name="Localization",
+     *          name="Location",
      *          in="body",
      *          description="Obiekt lokalizacji podany w formacie json",
      *          required=true,
@@ -95,18 +95,20 @@ class LocalizationController extends AbstractApiController
     public function add(Request $request)
     {
         $data = json_decode($request->getContent(), true);
-
-        if (empty($data['name'])) {
-            return $this->getBadRequestResponse("Field name is required");
-        }
+        $result = [];
 
         try {
-            $command = new LocalizationCommand($this->container);
-            $command->create($data['name']);
+            $cmd = new LocationCommand($this->container);
+            $object = $cmd->createFactory($data);
+            $result['validation_messages'] = $this->objectValidate($object);
+            if(empty($result['validation_messages'])){
+                $cmd->persist($object);
+                $cmd->flusch($object);
+            }
+            return $this->getSuccessResponse($result);
+
         } catch (\Exception $e) {
             return $this->getBadRequestResponse($e->getMessage());
         }
-
-        return $this->getSuccessResponse([]);
     }
 }

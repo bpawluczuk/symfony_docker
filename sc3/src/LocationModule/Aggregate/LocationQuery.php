@@ -3,17 +3,17 @@
  * Created by bpawluczuk on gru, 2019
  */
 
-namespace App\LocalizationModule\Aggregate;
+namespace App\LocationModule\Aggregate;
 
 use App\AbstractModule\Aggregate\AbstractAggregate;
-use App\LocalizationModule\Domain\Entity\Localization;
-use App\LocalizationModule\Domain\Repository\LocalizationRepository;
+use App\LocationModule\Domain\Entity\Location;
+use App\LocationModule\Domain\Repository\LocationRepository;
 
 /**
- * Class LocalizationQuery
- * @package App\LocalizationModule\Aggregate
+ * Class LocationQuery
+ * @package App\LocationModule\Aggregate
  */
-class LocalizationQuery extends AbstractAggregate
+class LocationQuery extends AbstractAggregate
 {
     /**
      * @param array $filtr
@@ -21,7 +21,7 @@ class LocalizationQuery extends AbstractAggregate
      */
     public function getListObj(array $filtr = [])
     {
-        return $this->getRepository(Localization::class)->findAll();
+        return $this->getRepository(Location::class)->findAll();
     }
 
     /**
@@ -33,7 +33,7 @@ class LocalizationQuery extends AbstractAggregate
         $result = [];
 
         /**
-         * @var Localization $item
+         * @var Location $item
          */
         foreach ($this->getListObj($filtr) as $item) {
             $result[] = [
