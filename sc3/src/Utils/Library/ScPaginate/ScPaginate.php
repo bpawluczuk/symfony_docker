@@ -6,14 +6,14 @@
  * Time: 20:59
  */
 
-namespace App\AbstractModule\Infrastructure\Util;
+namespace App\Utils\Library\ScPaginate;
 
 /**
- * Class Paginate
- * @package App\AbstractModule\Infrastructure\Util
+ * Class ScPaginate
+ * @package App\Utils\Library\ScPaginate
  * @author Borys Pawluczuk
  */
-class Paginate
+class ScPaginate
 {
     /**
      * @var array

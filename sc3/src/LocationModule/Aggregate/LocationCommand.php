@@ -6,11 +6,7 @@
 namespace App\LocationModule\Aggregate;
 
 use App\AbstractModule\Aggregate\AbstractAggregate;
-
 use App\LocationModule\Domain\Entity\Location;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\ConstraintViolation;
 
 /**
  * Class LocationCommand
@@ -23,10 +19,10 @@ class LocationCommand extends AbstractAggregate
      * @param array $data
      * @return object
      */
-    public function createFactory(array $data)
+    public function entityFactory(array $data)
     {
         $object = new Location();
-        $object->setName(empty($data['name']) ? null : $data['name']);
+        $object->setName(empty($data['name']) ? "" : $data['name']);
 
         return $object;
     }

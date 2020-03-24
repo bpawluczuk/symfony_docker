@@ -6,7 +6,7 @@
 namespace App\LocationModule\Api;
 
 use App\AbstractModule\Api\AbstractApiController;
-use App\AbstractModule\Infrastructure\Util\Paginate;
+use App\Utils\Library\ScPaginate\ScPaginate;
 use App\LocationModule\Aggregate\LocationCommand;
 use App\LocationModule\Aggregate\LocationQuery;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Nelmio\ApiDocBundle\Annotation\Security;
 use Swagger\Annotations as SWG;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class LocationController
@@ -54,7 +53,7 @@ class LocationController extends AbstractApiController
     {
         $query = new LocationQuery($this->container);
 
-        $paginate = new Paginate(
+        $paginate = new ScPaginate(
             $query->getList([]),
             $request->query->get('page'),
             $request->query->get('limit')
@@ -99,11 +98,11 @@ class LocationController extends AbstractApiController
 
         try {
             $cmd = new LocationCommand($this->container);
-            $object = $cmd->createFactory($data);
-            $result['validation_messages'] = $this->objectValidate($object);
+            $entity = $cmd->entityFactory($data);
+            $result['validation_messages'] = $this->getValidator()->entityValidate($entity);
             if(empty($result['validation_messages'])){
-                $cmd->persist($object);
-                $cmd->flusch($object);
+                $cmd->persist($entity);
+                $cmd->flusch($entity);
             }
             return $this->getSuccessResponse($result);
 

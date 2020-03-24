@@ -239,9 +239,6 @@
             ".env"
         ]
     },
-    "symfony/form": {
-        "version": "v5.0.5"
-    },
     "symfony/framework-bundle": {
         "version": "4.4",
         "recipe": {
@@ -269,9 +266,6 @@
         "version": "v5.0.4"
     },
     "symfony/inflector": {
-        "version": "v5.0.5"
-    },
-    "symfony/intl": {
         "version": "v5.0.5"
     },
     "symfony/maker-bundle": {
@@ -307,9 +301,6 @@
             "tests/bootstrap.php"
         ]
     },
-    "symfony/polyfill-intl-icu": {
-        "version": "v1.14.0"
-    },
     "symfony/polyfill-intl-idn": {
         "version": "v1.14.0"
     },
@@ -321,9 +312,6 @@
     },
     "symfony/profiler-pack": {
         "version": "v1.0.4"
-    },
-    "symfony/property-access": {
-        "version": "v5.0.5"
     },
     "symfony/property-info": {
         "version": "v5.0.5"

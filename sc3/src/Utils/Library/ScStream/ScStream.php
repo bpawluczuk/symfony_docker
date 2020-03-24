@@ -6,13 +6,13 @@
  * Time: 22:30
  */
 
-namespace App\AbstractModule\Infrastructure\Util;
+namespace App\Utils\Library\ScStream;
 
 /**
- * Class Stream
- * @package App\AbstractModule\Infrastructure\Util
+ * Class ScStream
+ * @package App\Utils\Library\ScStream
  */
-class Stream
+class ScStream
 {
     private $array;
 
@@ -27,7 +27,7 @@ class Stream
 
     public static function asStream(array $array)
     {
-        return new Stream($array);
+        return new ScStream($array);
     }
 
     /**
@@ -52,7 +52,7 @@ class Stream
 
     /**
      * @param callable $callback
-     * @return Stream
+     * @return ScStream
      */
     public function map(callable $callback)
     {
@@ -60,12 +60,12 @@ class Stream
         for ($i = 0; $i < count($array); $i++) {
             $array[$i] = call_user_func_array($callback, [$array[$i], $i]);
         }
-        return new Stream($array);
+        return new ScStream($array);
     }
 
     /**
      * @param callable $callback
-     * @return Stream
+     * @return ScStream
      */
     public function filter(callable $callback)
     {
@@ -75,12 +75,12 @@ class Stream
             if (call_user_func_array($callback, [$array[$i], $i]))
                 array_push($newArray, $array[$i]);
         }
-        return new Stream($newArray);
+        return new ScStream($newArray);
     }
 
     /**
      * @param callable|null $callback
-     * @return Stream
+     * @return ScStream
      */
     public function sort(callable $callback = null)
     {
@@ -89,25 +89,25 @@ class Stream
             sort($array, $callback);
         else
             sort($array);
-        return new Stream($array);
+        return new ScStream($array);
     }
 
     /**
-     * @return Stream
+     * @return ScStream
      */
     public function reverse()
     {
         $array = array_reverse($this->array);
-        return new Stream($array);
+        return new ScStream($array);
     }
 
     /**
      * @param $n
-     * @return Stream
+     * @return ScStream
      */
     public function skip($n)
     {
-        return new Stream(array_slice($this->array, $n));
+        return new ScStream(array_slice($this->array, $n));
     }
 
     /**
@@ -207,11 +207,11 @@ class Stream
     }
 
     /**
-     * @return Stream
+     * @return ScStream
      */
     public static function empty()
     {
-        return new Stream([]);
+        return new ScStream([]);
     }
 
     /**
@@ -229,11 +229,11 @@ class Stream
     }
 
     /**
-     * @param Stream $stream
-     * @return Stream
+     * @param ScStream $stream
+     * @return ScStream
      */
-    public function concat(Stream $stream)
+    public function concat(ScStream $stream)
     {
-        return new Stream(array_merge($this->array, $stream->asArray()));
+        return new ScStream(array_merge($this->array, $stream->asArray()));
     }
 }

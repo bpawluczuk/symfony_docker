@@ -1,0 +1,9 @@
+
+services:
+
+  util.sc.validator:
+    class: App\Utils\Library\ScValidator\ScValidator
+    arguments:
+      - '@validator'
+
+  App\Utils\Library\ScValidator\ScValidatorInterface: '@util.sc.validator'

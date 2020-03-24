@@ -4,8 +4,9 @@ namespace App\AbstractModule\Api;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintViolation;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
+use App\Utils\Library\ScValidator\ScValidatorInterface;
 
 /**
  * Class AbstractApiController
@@ -15,23 +16,23 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class AbstractApiController extends AbstractController
 {
     /**
-     * @var ValidatorInterface
+     * @var ScValidatorInterface
      */
     private $validator;
 
     /**
-     * @return ValidatorInterface
+     * @return ScValidatorInterface
      */
-    public function getValidator(): ValidatorInterface
+    public function getValidator(): ScValidatorInterface
     {
         return $this->validator;
     }
 
     /**
-     * AbstractApiController constructor.
-     * @param ValidatorInterface $validator
+     * @required
+     * @param ScValidatorInterface $validator
      */
-    public function __construct(ValidatorInterface $validator)
+    public function setValidator(ScValidatorInterface $validator): void
     {
         $this->validator = $validator;
     }
@@ -125,78 +126,5 @@ class AbstractApiController extends AbstractController
         $response->headers->set('Cache-Control', 'private, no-cache');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
-    }
-
-    /**
-     * Walidacja na podstawie assercji z klasy Entity obiektu
-     * @param object $object
-     * @return array
-     */
-    public function objectValidate(object $object): array
-    {
-        $result = [];
-        $errors = $this->getValidator()->validate($object);
-
-        /**
-         * @var ConstraintViolation $error
-         */
-        foreach ($errors as $error) {
-            $result[] = [
-                'property' => $error->getPropertyPath(),
-                'message' => $error->getMessage()
-            ];
-        }
-
-        return $result;
-    }
-
-    /**
-     * Walidacja na podstawie danych w tablicy pol oraz danych w tablicy assercji
-     * @param array $fields
-     * @param array $constraints
-     * @return array
-     */
-    public function arrayValidate(array $fields, array $constraints): array
-    {
-        $result = [];
-
-        $errors = $this->getValidator()->validate($fields, $constraints);
-
-        /**
-         * @var ConstraintViolation $error
-         */
-        foreach ($errors as $error) {
-            $result[] = [
-                'property' => $error->getPropertyPath(),
-                'message' => $error->getMessage()
-            ];
-        }
-
-        return $result;
-    }
-
-    /**
-     * Walidacja na podstawie danych w tablicy pol oraz danych w tablicy assercji
-     * @param $property
-     * @param array $constraint
-     * @return array
-     */
-    public function propertyValidate($property, array $constraint): array
-    {
-        $result = [];
-
-        $errors = $this->getValidator()->validate($property, $constraint);
-
-        /**
-         * @var ConstraintViolation $error
-         */
-        foreach ($errors as $error) {
-            $result[] = [
-                'property' => $error->getPropertyPath(),
-                'message' => $error->getMessage()
-            ];
-        }
-
-        return $result;
     }
 }
