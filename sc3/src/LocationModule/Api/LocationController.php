@@ -29,22 +29,18 @@ class LocationController extends AbstractApiController
      * @SWG\Response(
      *     response=200,
      *     description="Returns the Locations",
-     *     @SWG\Schema(
-     *         type="array",
-     *         @SWG\Items(ref="#definitions/Reward")
-     *     )
      * )
      * @SWG\Parameter(
      *     name="page",
      *     in="query",
      *     type="number",
-     *     description="Strona"
+     *     description="page number"
      * )
      * @SWG\Parameter(
      *     name="limit",
      *     in="query",
      *     type="number",
-     *     description="Limit"
+     *     description="results limit per page"
      * )
      * @param Request $request
      * @return JsonResponse
@@ -78,7 +74,7 @@ class LocationController extends AbstractApiController
      *      @SWG\Parameter(
      *          name="Location",
      *          in="body",
-     *          description="Obiekt lokalizacji podany w formacie json",
+     *          description="Location object in json format",
      *          required=true,
      *          type="json",
      *          format="application/json",
