@@ -19,6 +19,7 @@ use Swagger\Annotations as SWG;
 /**
  * Class LocationController
  * @package App\LocationModule\Api
+ * @author Borys Pawluczuk
  * @Route("/api/location")
  */
 class LocationController extends AbstractApiController
@@ -90,17 +91,20 @@ class LocationController extends AbstractApiController
     public function add(Request $request)
     {
         $data = json_decode($request->getContent(), true);
-        $result = [];
+        $dataResponse = [];
 
         try {
             $cmd = new LocationCommand($this->container);
             $entity = $cmd->entityFactory($data);
-            $result['validation_messages'] = $this->getValidator()->entityValidate($entity);
-            if(empty($result['validation_messages'])){
+            $dataResponse['validation_messages'] = $this->getValidator()->entityValidate($entity);
+            if(empty($dataResponse['validation_messages'])){
+                $dataResponse['valid'] = true;
                 $cmd->persist($entity);
                 $cmd->flusch($entity);
+            }else{
+                $dataResponse['valid'] = false;
             }
-            return $this->getSuccessResponse($result);
+            return $this->getSuccessResponse($dataResponse);
 
         } catch (\Exception $e) {
             return $this->getBadRequestResponse($e->getMessage());
