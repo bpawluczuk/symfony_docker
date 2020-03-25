@@ -4,8 +4,6 @@ namespace App\AbstractModule\Api;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Validator\Constraint;
-use Symfony\Component\Validator\ConstraintViolation;
 use App\Utils\Library\ScValidator\ScValidatorInterface;
 
 /**
@@ -15,6 +13,14 @@ use App\Utils\Library\ScValidator\ScValidatorInterface;
  */
 class AbstractApiController extends AbstractController
 {
+    const HTTP_OK = 200;
+    const HTTP_CREATED = 201;
+
+    const HTTP_BAD_REQUEST = 400;
+    const HTTP_ACCESS_DENIED = 401;
+    const HTTP_FORBIDDEN = 403;
+    const HTTP_NOT_FOUND = 404;
+
     /**
      * @var ScValidatorInterface
      */
@@ -45,12 +51,10 @@ class AbstractApiController extends AbstractController
     protected function getSuccessResponse(array $data, $page_count = null): JsonResponse
     {
         $dataResponse['status'] = 'ok';
-        if ($page_count) {
-            $dataResponse['page_count'] = $page_count;
-        }
+        empty($page_count) ?: $dataResponse['page_count'] = $page_count;
         $dataResponse['data'] = $data;
 
-        $response = new JsonResponse($dataResponse);
+        $response = new JsonResponse($dataResponse, self::HTTP_OK);
         $response->headers->set('Cache-Control', 'private, no-cache');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
@@ -64,11 +68,11 @@ class AbstractApiController extends AbstractController
     {
         $dataResponse = [
             'status' => 'error',
-            'error_code' => 400,
+            'error_code' => self::HTTP_BAD_REQUEST,
             'message' => $message,
         ];
 
-        $response = new JsonResponse($dataResponse, 400);
+        $response = new JsonResponse($dataResponse, self::HTTP_BAD_REQUEST);
         $response->headers->set('Cache-Control', 'private, no-cache');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
@@ -82,11 +86,11 @@ class AbstractApiController extends AbstractController
     {
         $dataResponse = [
             'status' => 'error',
-            'error_code' => 401,
+            'error_code' => self::HTTP_ACCESS_DENIED,
             'message' => $message
         ];
 
-        $response = new JsonResponse($dataResponse, 401);
+        $response = new JsonResponse($dataResponse, self::HTTP_ACCESS_DENIED);
         $response->headers->set('Cache-Control', 'private, no-cache');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
@@ -100,11 +104,11 @@ class AbstractApiController extends AbstractController
     {
         $dataResponse = [
             'status' => 'error',
-            'error_code' => 403,
+            'error_code' => self::HTTP_FORBIDDEN,
             'message' => $message
         ];
 
-        $response = new JsonResponse($dataResponse, 403);
+        $response = new JsonResponse($dataResponse, self::HTTP_FORBIDDEN);
         $response->headers->set('Cache-Control', 'private, no-cache');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
@@ -118,11 +122,33 @@ class AbstractApiController extends AbstractController
     {
         $dataResponse = [
             'status' => 'error',
-            'error_code' => 404,
+            'error_code' => self::HTTP_NOT_FOUND,
             'message' => $message
         ];
 
-        $response = new JsonResponse($dataResponse, 404);
+        $response = new JsonResponse($dataResponse, self::HTTP_NOT_FOUND);
+        $response->headers->set('Cache-Control', 'private, no-cache');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response;
+    }
+
+    /**
+     * @param array $data
+     * @param array $parameters
+     * @return JsonResponse
+     */
+    protected function getCustomResponse(array $data, array $parameters): JsonResponse
+    {
+        $dataResponse['status'] = 'ok';
+
+        empty($parameters['status']) ?: $dataResponse['status'] = $parameters['status'];
+        empty($parameters['page_count']) ?: $dataResponse['page_count'] = $parameters['page_count'];
+        empty($parameters['message']) ?: $dataResponse['message'] = $parameters['message'];
+        empty($parameters['http_status']) ? $http_status = $parameters['http_status'] : $http_status = self::HTTP_OK;
+
+        $dataResponse['data'] = $data;
+
+        $response = new JsonResponse($dataResponse, $http_status);
         $response->headers->set('Cache-Control', 'private, no-cache');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
