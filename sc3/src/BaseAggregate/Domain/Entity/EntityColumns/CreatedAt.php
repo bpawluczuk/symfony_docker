@@ -1,13 +1,13 @@
 <?php
 
-namespace App\AbstractModule\Domain\Entity\EntityColumns;
+namespace App\BaseAggregate\Domain\Entity\EntityColumns;
 
 use DateTime;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Trait CreatedAt
- * @package App\AbstractModule\Domain\Entity\EntityColumns
+ * @package App\BaseAggregate\Domain\Entity\EntityColumns
  */
 trait CreatedAt
 {

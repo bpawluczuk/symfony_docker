@@ -6,7 +6,7 @@
  * Time: 13:11
  */
 
-namespace App\AbstractModule\Aggregate;
+namespace App\BaseAggregate\Aggregate;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Class AbstractAggregate
- * @package App\AbstractModule\Aggregate
+ * @package App\BaseAggregate\Aggregate
  * @author Borys Pawluczuk
  */
 abstract class AbstractAggregate

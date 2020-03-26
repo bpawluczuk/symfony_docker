@@ -3,12 +3,12 @@
  * Created by bpawluczuk on gru, 2019
  */
 
-namespace App\LocationModule\Api;
+namespace App\Location\Api;
 
-use App\AbstractModule\Api\AbstractApiController;
+use App\BaseAggregate\Api\AbstractApiController;
 use App\Utils\Library\ScPaginate\ScPaginate;
-use App\LocationModule\Aggregate\LocationCommand;
-use App\LocationModule\Aggregate\LocationQuery;
+use App\Location\Aggregate\LocationCommand;
+use App\Location\Aggregate\LocationQuery;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +18,7 @@ use Swagger\Annotations as SWG;
 
 /**
  * Class LocationController
- * @package App\LocationModule\Api
+ * @package App\Location\Api
  * @author Borys Pawluczuk
  * @Route("/api/location")
  */

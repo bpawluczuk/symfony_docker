@@ -1,6 +1,6 @@
 <?php
 
-namespace App\LocationModule\Tests\Functional;
+namespace App\Location\Tests\Functional;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;

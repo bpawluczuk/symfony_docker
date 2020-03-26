@@ -3,17 +3,17 @@
  * Created by bpawluczuk on gru, 2019
  */
 
-namespace App\AbstractModule\Domain\Entity;
+namespace App\BaseAggregate\Domain\Entity;
 
-use App\AbstractModule\Domain\Entity\EntityColumns\CreatedAt;
-use App\AbstractModule\Domain\Entity\EntityColumns\Id;
-use App\AbstractModule\Domain\Entity\EntityColumns\UpdatedAt;
+use App\BaseAggregate\Domain\Entity\EntityColumns\CreatedAt;
+use App\BaseAggregate\Domain\Entity\EntityColumns\Id;
+use App\BaseAggregate\Domain\Entity\EntityColumns\UpdatedAt;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
 
 /**
  * Class AbstractEntity
- * @package App\AbstractModule\Domain\Entity
+ * @package App\BaseAggregate\Domain\Entity
  * @author Borys Pawluczuk
  * @ORM\MappedSuperclass
  */

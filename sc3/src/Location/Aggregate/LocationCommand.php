@@ -3,14 +3,14 @@
  * Created by bpawluczuk on gru, 2019
  */
 
-namespace App\LocationModule\Aggregate;
+namespace App\Location\Aggregate;
 
-use App\AbstractModule\Aggregate\AbstractAggregate;
-use App\LocationModule\Domain\Entity\Location;
+use App\BaseAggregate\Aggregate\AbstractAggregate;
+use App\Location\Domain\Entity\Location;
 
 /**
  * Class LocationCommand
- * @package App\LocationModule\Aggregate
+ * @package App\Location\Aggregate
  */
 class LocationCommand extends AbstractAggregate
 {

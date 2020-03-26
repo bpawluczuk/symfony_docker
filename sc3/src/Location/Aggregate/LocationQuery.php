@@ -3,15 +3,15 @@
  * Created by bpawluczuk on gru, 2019
  */
 
-namespace App\LocationModule\Aggregate;
+namespace App\Location\Aggregate;
 
-use App\AbstractModule\Aggregate\AbstractAggregate;
-use App\LocationModule\Domain\Entity\Location;
-use App\LocationModule\Domain\Repository\LocationRepository;
+use App\BaseAggregate\Aggregate\AbstractAggregate;
+use App\Location\Domain\Entity\Location;
+use App\Location\Domain\Repository\LocationRepository;
 
 /**
  * Class LocationQuery
- * @package App\LocationModule\Aggregate
+ * @package App\Location\Aggregate
  */
 class LocationQuery extends AbstractAggregate
 {

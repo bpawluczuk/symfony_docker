@@ -1,8 +1,8 @@
 <?php
 
-namespace App\LocationModule\Domain\Repository;
+namespace App\Location\Domain\Repository;
 
-use App\LocationModule\Domain\Entity\Location;
+use App\Location\Domain\Entity\Location;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 

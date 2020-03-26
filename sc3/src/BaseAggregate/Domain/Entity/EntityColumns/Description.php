@@ -1,10 +1,10 @@
 <?php
 
-namespace App\AbstractModule\Domain\Entity\EntityColumns;
+namespace App\BaseAggregate\Domain\Entity\EntityColumns;
 
 /**
  * Trait Description
- * @package App\AbstractModule\Domain\Entity\EntityColumns
+ * @package App\BaseAggregate\Domain\Entity\EntityColumns
  */
 trait Description
 {

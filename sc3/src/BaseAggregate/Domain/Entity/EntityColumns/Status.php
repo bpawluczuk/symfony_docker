@@ -1,12 +1,12 @@
 <?php
 
-namespace App\AbstractModule\Domain\Entity\EntityColumns;
+namespace App\BaseAggregate\Domain\Entity\EntityColumns;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Trait StatusId
- * @package App\AbstractModule\Domain\Entity\EntityColumns
+ * @package App\BaseAggregate\Domain\Entity\EntityColumns
  */
 trait Status
 {
