@@ -6,7 +6,7 @@
  * Time: 13:11
  */
 
-namespace App\BaseAggregate\Aggregate;
+namespace App\System\BaseClass\CQRS;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -17,11 +17,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
- * Class AbstractAggregate
- * @package App\BaseAggregate\Aggregate
+ * Class AbstractCqrsManager
+ * @package App\System\BaseClass\CQRS
  * @author Borys Pawluczuk
  */
-abstract class AbstractAggregate
+abstract class AbstractCqrsManager
 {
     protected $eventPublisher;
 

@@ -1,13 +1,14 @@
 <?php
 
-namespace App\BaseAggregate\Domain\Entity\EntityColumns;
+namespace App\System\BaseClass\Domain\Entity\EntityColumns;
 
 use DateTime;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Trait UpdatedAt
- * @package App\BaseAggregate\Domain\Entity\EntityColumns
+ * @package App\System\BaseClass\Domain\Entity\EntityColumns
+ * @author Borys Pawluczuk
  */
 trait UpdatedAt
 {

@@ -31,8 +31,8 @@ services:
 #        resource: '../src/Controller'
 #        tags: ['controller.service_arguments']
 
-    App\Location\Api\:
-        resource: '../src/Location/Api'
+    App\System\Main\Project\Location\Api\:
+        resource: '../src/System/Main/Project/Location/Api'
         tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed

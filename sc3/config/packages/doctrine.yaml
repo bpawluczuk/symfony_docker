@@ -19,6 +19,6 @@ doctrine:
             Location:
                 is_bundle: false
                 type: annotation
-                dir: '%kernel.project_dir%/src/Location/Domain/Entity'
-                prefix: 'App\Location\Domain\Entity'
+                dir: '%kernel.project_dir%/src/System/Main/Project/Location/Domain/Entity'
+                prefix: 'App\System\Main\Project\Location\Domain\Entity'
                 alias: Location

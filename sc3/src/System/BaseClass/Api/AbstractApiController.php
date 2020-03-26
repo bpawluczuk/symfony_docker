@@ -1,6 +1,6 @@
 <?php
 
-namespace App\BaseAggregate\Api;
+namespace App\System\BaseClass\Api;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -8,7 +8,7 @@ use App\Utils\Library\ScValidator\ScValidatorInterface;
 
 /**
  * Class AbstractApiController
- * @package App\BaseAggregate\Api
+ * @package App\System\BaseClass\Api
  * @author Borys Pawluczuk
  */
 class AbstractApiController extends AbstractController

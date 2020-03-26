@@ -3,17 +3,18 @@
  * Created by bpawluczuk on gru, 2019
  */
 
-namespace App\Location\Aggregate;
+namespace App\System\Main\Project\Location\CQRS;
 
-use App\BaseAggregate\Aggregate\AbstractAggregate;
-use App\Location\Domain\Entity\Location;
-use App\Location\Domain\Repository\LocationRepository;
+use App\System\Main\Project\Location\Domain\Entity\Location;
+use App\System\Main\Project\Location\Domain\Repository\LocationRepository;
+use App\System\BaseClass\CQRS\AbstractCqrsManager;
 
 /**
  * Class LocationQuery
- * @package App\Location\Aggregate
+ * @package App\System\Main\Project\Location\CQRS
+ * @author Borys Pawluczuk
  */
-class LocationQuery extends AbstractAggregate
+class LocationQuery extends AbstractCqrsManager
 {
     /**
      * @param array $filtr
