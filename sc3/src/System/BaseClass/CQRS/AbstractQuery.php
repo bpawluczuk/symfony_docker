@@ -13,26 +13,17 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
 use GuzzleHttp\Client;
 use Psr\Container\ContainerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
- * Class AbstractCqrsManager
+ * Class AbstractQuery
  * @package App\System\BaseClass\CQRS
  * @author Borys Pawluczuk
  */
-abstract class AbstractCqrsManager
+abstract class AbstractQuery
 {
-    protected $eventPublisher;
-
-    /**
-     * @param mixed $eventPublisher
-     */
-    public function setEventPublisher($eventPublisher)
-    {
-        $this->eventPublisher = $eventPublisher;
-    }
-
     /**
      * @var ContainerInterface
      */
@@ -91,6 +82,7 @@ abstract class AbstractCqrsManager
     /**
      * AbstractAggregate constructor.
      * @param ContainerInterface $container
+     * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(ContainerInterface $container)
     {

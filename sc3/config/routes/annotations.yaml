@@ -7,5 +7,5 @@ kernel:
     type: annotation
 
 Location.module.controllers:
-    resource: ../../src/System/Main/Project/Location/Api
+    resource: ../../src/System/Main/Location/Api
     type: annotation

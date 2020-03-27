@@ -1,13 +1,13 @@
 <?php
 
-namespace App\System\Main\Project\Location\Tests\Functional;
+namespace App\System\Main\Location\Tests\Functional;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class LocationControllerTest
- * @package App\System\Main\Project\Location\Tests\Functional
+ * @package App\System\Main\Location\Tests\Functional
  * @author Borys Pawluczuk
  */
 class LocationControllerTest extends WebTestCase

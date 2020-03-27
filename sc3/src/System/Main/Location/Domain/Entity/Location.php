@@ -1,6 +1,6 @@
 <?php
 
-namespace App\System\Main\Project\Location\Domain\Entity;
+namespace App\System\Main\Location\Domain\Entity;
 
 use App\System\BaseClass\Domain\Entity\AbstractEntity;
 use App\System\BaseClass\Domain\Entity\EntityColumns\Name;
@@ -9,8 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Location
- * @package App\System\Main\Project\Location\Domain\Entity
- * @ORM\Entity(repositoryClass="App\System\Main\Project\Location\Domain\Repository\LocationRepository")
+ * @package App\System\Main\Location\Domain\Entity
+ * @ORM\Entity(repositoryClass="App\System\Main\Location\Domain\Repository\LocationRepository")
  */
 class Location extends AbstractEntity
 {

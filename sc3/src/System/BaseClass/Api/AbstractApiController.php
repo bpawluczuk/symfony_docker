@@ -3,6 +3,7 @@
 namespace App\System\BaseClass\Api;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Utils\Library\ScValidator\ScValidatorInterface;
 
@@ -41,6 +42,28 @@ class AbstractApiController extends AbstractController
     public function setValidator(ScValidatorInterface $validator): void
     {
         $this->validator = $validator;
+    }
+
+    /**
+     * @var EventDispatcherInterface $dispatcher
+     */
+    protected $dispatcher;
+
+    /**
+     * @required
+     * @param EventDispatcherInterface $dispatcher
+     */
+    public function setDispatcher(EventDispatcherInterface $dispatcher): void
+    {
+        $this->dispatcher = $dispatcher;
+    }
+
+    /**
+     * @return EventDispatcherInterface
+     */
+    public function getDispatcher(): EventDispatcherInterface
+    {
+        return $this->dispatcher;
     }
 
     /**
