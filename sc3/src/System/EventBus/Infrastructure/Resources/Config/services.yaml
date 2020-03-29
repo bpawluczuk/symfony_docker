@@ -1,2 +1,10 @@
 
 services:
+
+#  App\System\EventBus\Infrastructure\EventListener:
+#      tags:
+#        - { name: kernel.event_listener, event: create.entity, method: getCreateEvent}
+
+  App\System\EventBus\Infrastructure\LogSubscriber:
+    tags:
+      - { name: kernel.event_subscriber}

@@ -6,6 +6,7 @@
 namespace App\System\Main\Location\Api;
 
 use App\System\BaseClass\Api\AbstractApiController;
+use App\System\BaseClass\Infrastructure\Event\CreateEntityEvent;
 use App\Utils\Library\ScPaginate\ScPaginate;
 use App\System\Main\Location\CQRS\LocationCommand;
 use App\System\Main\Location\CQRS\LocationQuery;
@@ -51,15 +52,17 @@ class LocationController extends AbstractApiController
         $query = new LocationQuery($this->container);
 
         $paginate = new ScPaginate(
-            $query->getList([]),
+            $query->getListArray([]),
             $request->query->get('page'),
             $request->query->get('limit')
         );
 
-        return $this->getSuccessResponse(
-            $paginate->getArrayResult(),
-            $paginate->getPageCount()
-        );
+        $data = [
+            'page_count' => $paginate->getPageCount(),
+            'data' => $paginate->getArrayResult()
+        ];
+
+        return $this->response($data);
     }
 
     /**
@@ -90,26 +93,25 @@ class LocationController extends AbstractApiController
      */
     public function add(Request $request)
     {
-        $data = json_decode($request->getContent(), true);
-        $dataResponse = [];
+        $dataContent = json_decode($request->getContent(), true);
+        $data = [];
 
         try {
             $cmd = new LocationCommand($this->container, $this->getDispatcher());
-            $entity = $cmd->entityFactory($data);
-            $dataResponse['validation_messages'] = $this->getValidator()->entityValidate($entity);
-            if(empty($dataResponse['validation_messages'])){
-                $dataResponse['valid'] = true;
+            $entity = $cmd->entityFactory($dataContent);
+            $data['validation_messages'] = $this->getValidator()->entityValidate($entity);
+            if(empty($data['validation_messages'])){
                 $cmd->persist($entity);
                 $cmd->flusch($entity);
-                $rrr=$this->getDispatcher();
-
+                $this->getDispatcher()->dispatch(new CreateEntityEvent($entity), CreateEntityEvent::NAME);
+                return $this->responseValidationOk($data);
             }else{
-                $dataResponse['valid'] = false;
+                return $this->responseValidationError($data);
             }
-            return $this->getSuccessResponse($dataResponse);
 
         } catch (\Exception $e) {
-            return $this->getBadRequestResponse($e->getMessage());
+//            return $this->responseBadRequest($e->getMessage());
+            return $this->responseBadRequest();
         }
     }
 }

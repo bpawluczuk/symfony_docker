@@ -10,7 +10,7 @@ use App\System\Main\Location\Domain\Entity\Location;
 
 /**
  * Class LocationCommand
- * @package App\System\Main\Location\CQRS
+ * @package App\System\Main\Project\Location\CQRS
  * @author Borys Pawluczuk
  */
 class LocationCommand extends AbstractCommand

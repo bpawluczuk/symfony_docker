@@ -22,4 +22,34 @@ class LocationRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Location::class);
     }
+
+    /**
+     * @param object $item
+     * @return array
+     */
+    public function transform(object $item)
+    {
+        return [
+            'id' => (int)$item->getId(),
+            "name" => (string)$item->getName(),
+            "created_at" => $item->getCreatedAt()->getTimestamp(),
+            "updated_at" => $item->getUpdatedAt()->getTimestamp(),
+        ];
+    }
+
+    /**
+     * @param array $filtr
+     * @return array
+     */
+    public function transformAll(array $filtr = [])
+    {
+        $items = $this->findAll();
+        $itemsArray = [];
+
+        foreach ($items as $item) {
+            $itemsArray[] = $this->transform($item);
+        }
+
+        return $itemsArray;
+    }
 }

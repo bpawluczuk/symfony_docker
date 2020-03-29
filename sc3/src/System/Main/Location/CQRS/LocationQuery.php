@@ -26,23 +26,29 @@ class LocationQuery extends AbstractQuery
     }
 
     /**
+     * @param object $item
+     * @return array
+     */
+    public function getArray(object $item)
+    {
+        /**
+         * @var LocationRepository $repo
+         */
+        $repo = $this->getRepository(Location::class);
+        return $repo->transform($item);
+    }
+
+    /**
      * @param array $filtr
      * @return array
      */
-    public function getList(array $filtr = [])
+    public function getListArray(array $filtr = [])
     {
-        $result = [];
-
         /**
-         * @var Location $item
+         * @var LocationRepository $repo
          */
-        foreach ($this->getListObj($filtr) as $item) {
-            $result[] = [
-                "name" => $item->getName(),
-                "created_at" => $item->getCreatedAt()->getTimestamp(),
-                "updated_at" => $item->getUpdatedAt()->getTimestamp(),
-            ];
-        }
-        return $result;
+        $repo = $this->getRepository(Location::class);
+        return $repo->transformAll($filtr);
     }
+
 }
