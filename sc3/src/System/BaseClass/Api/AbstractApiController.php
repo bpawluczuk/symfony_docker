@@ -45,7 +45,7 @@ class AbstractApiController extends AbstractController
      * @param int $statusCode
      * @return AbstractApiController
      */
-    public function setStatusCode(int $statusCode): AbstractApiController
+    public function setStatusCode(int $statusCode): self
     {
         $this->statusCode = $statusCode;
         return $this;

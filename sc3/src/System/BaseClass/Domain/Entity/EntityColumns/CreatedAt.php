@@ -2,6 +2,7 @@
 
 namespace App\System\BaseClass\Domain\Entity\EntityColumns;
 
+use Doctrine\ORM\Mapping as ORM;
 use DateTime;
 use Gedmo\Mapping\Annotation as Gedmo;
 

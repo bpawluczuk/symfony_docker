@@ -24,16 +24,18 @@ class LocationRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param object $item
+     * @param Location $item
      * @return array
      */
-    public function transform(object $item)
+    public function transform(Location $item)
     {
         return [
-            'id' => (int)$item->getId(),
+            "id" => (int)$item->getId(),
+            "main" => (int)$item->getMain(),
             "name" => (string)$item->getName(),
             "created_at" => $item->getCreatedAt()->getTimestamp(),
             "updated_at" => $item->getUpdatedAt()->getTimestamp(),
+            "status" => (int)$item->getStatus(),
         ];
     }
 

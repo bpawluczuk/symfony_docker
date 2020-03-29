@@ -2,6 +2,7 @@
 
 namespace App\System\BaseClass\Domain\Entity\EntityColumns;
 
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
@@ -16,7 +17,7 @@ trait Name
      * @ORM\Column(name="name", type="string")
      * @NotBlank(message="Please provide name")
      */
-    private $name;
+    protected $name;
 
     /**
      * @return string|null

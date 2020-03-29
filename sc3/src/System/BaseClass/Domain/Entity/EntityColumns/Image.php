@@ -2,6 +2,8 @@
 
 namespace App\System\BaseClass\Domain\Entity\EntityColumns;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Trait Image
  * @package App\System\BaseClass\Domain\Entity\EntityColumns
@@ -13,7 +15,7 @@ trait Image
      * @var string
      * @ORM\Column(name="image", type="string", nullable=true)
      */
-    private $image;
+    protected $image;
 
     /**
      * @return string|null

@@ -84,7 +84,9 @@ class LocationController extends AbstractApiController
      *          format="application/json",
      *          @SWG\Schema(
      *              type="object",
+     *              @SWG\Property(property="main", type="number", example=1),
      *              @SWG\Property(property="name", type="string", example="Auchan Bydgoszcz"),
+     *              @SWG\Property(property="status", type="number", example=1),
      *          )
      *     )
      * )

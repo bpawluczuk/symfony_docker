@@ -23,6 +23,7 @@ class LocationCommand extends AbstractCommand
     public function entityFactory(array $data)
     {
         $object = new Location();
+        $object->setMain(empty($data['main']) ? null : (int)$data['main']);
         $object->setName(empty($data['name']) ? "" : $data['name']);
 
         return $object;

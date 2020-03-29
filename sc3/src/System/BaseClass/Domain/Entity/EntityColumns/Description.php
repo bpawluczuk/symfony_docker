@@ -2,6 +2,8 @@
 
 namespace App\System\BaseClass\Domain\Entity\EntityColumns;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Trait Description
  * @package App\System\BaseClass\Domain\Entity\EntityColumns
@@ -13,7 +15,7 @@ trait Description
      * @var string
      * @ORM\Column(name="description", type="string", nullable=true)
      */
-    private $description;
+    protected $description;
 
     /**
      * @return string|null

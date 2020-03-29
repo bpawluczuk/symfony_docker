@@ -6,34 +6,34 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\NotNull;
 
 /**
- * Trait StatusId
+ * Trait Main
  * @package App\System\BaseClass\Domain\Entity\EntityColumns
  * @author Borys Pawluczuk
  */
-trait Status
+trait Main
 {
     /**
      * @var int
-     * @ORM\Column(name="status", type="smallint", options={"default" = 1})
-     * @NotNull(message="Please provide status")
+     * @ORM\Column(name="main", type="smallint")
+     * @NotNull(message="Please provide main")
      */
-    protected $status = 1;
+    protected $main;
 
     /**
      * @return int
      */
-    public function getStatus(): int
+    public function getMain(): int
     {
-        return $this->status;
+        return $this->main;
     }
 
     /**
-     * @param int $status
-     * @return $this
+     * @param int $main
+     * @return Main
      */
-    public function setStatus(int $status): self
+    public function setMain(int $main): self
     {
-        $this->status = $status;
+        $this->main = $main;
         return $this;
     }
 }
