@@ -25,9 +25,10 @@ class LocationControllerTest extends WebTestCase
             )
         );
 
-        $this->assertContains('status', $client->getResponse()->getContent());
         $this->assertContains('data', $client->getResponse()->getContent());
+        $this->assertContains('main', $client->getResponse()->getContent());
         $this->assertContains('name', $client->getResponse()->getContent());
+        $this->assertContains('status', $client->getResponse()->getContent());
         $this->assertContains('created_at', $client->getResponse()->getContent());
         $this->assertContains('updated_at', $client->getResponse()->getContent());
     }

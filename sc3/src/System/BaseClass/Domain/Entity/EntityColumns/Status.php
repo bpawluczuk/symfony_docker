@@ -31,7 +31,7 @@ trait Status
      * @param int $status
      * @return $this
      */
-    public function setStatus(int $status): self
+    public function setStatus(?int $status): self
     {
         $this->status = $status;
         return $this;

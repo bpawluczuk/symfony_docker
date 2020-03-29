@@ -31,7 +31,7 @@ trait Main
      * @param int $main
      * @return Main
      */
-    public function setMain(int $main): self
+    public function setMain(?int $main): self
     {
         $this->main = $main;
         return $this;

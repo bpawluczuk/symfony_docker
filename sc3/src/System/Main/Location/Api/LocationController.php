@@ -113,7 +113,7 @@ class LocationController extends AbstractApiController
 
         } catch (\Exception $e) {
 //            return $this->responseBadRequest($e->getMessage());
-            return $this->responseBadRequest();
+            return $this->responseBadRequest($e->getMessage());
         }
     }
 }

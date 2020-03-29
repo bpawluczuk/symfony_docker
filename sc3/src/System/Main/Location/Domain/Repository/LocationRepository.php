@@ -33,9 +33,9 @@ class LocationRepository extends ServiceEntityRepository
             "id" => (int)$item->getId(),
             "main" => (int)$item->getMain(),
             "name" => (string)$item->getName(),
+            "status" => (int)$item->getStatus(),
             "created_at" => $item->getCreatedAt()->getTimestamp(),
             "updated_at" => $item->getUpdatedAt()->getTimestamp(),
-            "status" => (int)$item->getStatus(),
         ];
     }
 
