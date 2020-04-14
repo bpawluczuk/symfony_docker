@@ -172,4 +172,8 @@ class AbstractApiController extends AbstractController
         return 1;
     }
 
+    public function func2(){
+        return 1;
+    }
+
 }
