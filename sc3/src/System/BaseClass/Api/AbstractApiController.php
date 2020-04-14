@@ -168,4 +168,8 @@ class AbstractApiController extends AbstractController
         return $this->dispatcher;
     }
 
+    public function func1(){
+        return 1;
+    }
+
 }
